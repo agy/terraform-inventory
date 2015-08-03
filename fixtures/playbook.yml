@@ -2,5 +2,6 @@
     - web-aws
     - web-do
     - web-cs
+    - web-rs
   tasks:
     - command: "echo Hello, world!"

@@ -5,6 +5,10 @@ variable "aws_subnet_id" {}
 variable "cs_api_url" {}
 variable "cs_api_key" {}
 variable "cs_secret_key" {}
+variable "rs_auth_url" = {}
+variable "rs_username" = {}
+variable "rs_password" = {}
+variable "rs_tenant_name" = {}
 
 provider "aws" {
     access_key = "${var.aws_access_key}"
@@ -47,4 +51,12 @@ resource "cloudstack_instance" "web-cs" {
     service_offering = "small"
     template         = "centos-7-0-x64"
     zone             = "nyc2"
+}
+
+resource "openstack_compute_instance_v2" "web-rs" {
+    name = "terraform-inventory-3"
+    region = "ORD"
+    image_id = "09de0a66-3156-48b4-90a5-1cf25a905207"
+    flavor_id = "2"
+    key_pair = "terraform-inventory"
 }
